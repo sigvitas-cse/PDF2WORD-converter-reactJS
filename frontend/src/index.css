@@ -1,0 +1,162 @@
+/* Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F7F9FC;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+
+
+/* Logo Styling - Top Left Corner */
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #FF6B6B; /* Red-Pink */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Title */
+h1 {
+  font-size: 22px;
+  color: #333;
+}
+
+/* Dropzone */
+.dropzone {
+  border: 2px dashed #1E90FF;
+  padding: 20px;
+  cursor: pointer;
+  color: #333;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.dropzone:hover {
+  background-color: rgba(30, 144, 255, 0.1);
+}
+
+/* Upload Button */
+.upload-btn {
+  background-color: #FF6B6B;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.upload-btn:hover {
+  background-color: #E63946;
+}
+
+/* Status Text */
+.status {
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Download Button */
+.download-btn {
+  background-color: #1E90FF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.download-btn:hover {
+  background-color: #0c7cd5;
+}
+
+
+----------------------------------
+
+/* Main container */
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 50px auto;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0A1931; /* Dark Blue */
+  color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Logo placement */
+.logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logo {
+  width: 60px; /* Adjust size */
+  height: auto;
+}
+
+/* Dropzone for file upload */
+.dropzone {
+  border: 2px dashed #FFD700; /* Gold */
+  padding: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+/* Upload Button */
+.upload-btn {
+  margin-top: 15px;
+  background-color: #FF6B6B; /* Red-Pink */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.upload-btn:hover {
+  background-color: #FF3B3B; /* Darker red */
+}
+
+/* Download Button */
+.download-btn {
+  margin-top: 15px;
+  background-color: #1DD1A1; /* Green */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.download-btn:hover {
+  background-color: #10AC84; /* Darker green */
+}
+
+
+
+

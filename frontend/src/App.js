@@ -4,6 +4,9 @@ import { useDropzone } from "react-dropzone";
 import "./App.css"; // Import CSS file
 import logo from './assets/logo.png';
 
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 const App = () => {
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("");
@@ -23,7 +26,7 @@ const App = () => {
     formData.append("pdf", file);
 
     try {
-      const response = await axios.post("http://localhost:5000/upload", formData, {
+      const response = await axios.post(API_BASE_URL+"/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -38,7 +41,7 @@ const App = () => {
   const checkStatus = async (jobLocation) => {
     let polling = setInterval(async () => {
       try {
-        const response = await axios.get("http://localhost:5000/status", {
+        const response = await axios.get(API_BASE_URL+"/status", {
           params: { jobLocation },
         });
 

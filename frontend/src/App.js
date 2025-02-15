@@ -3,7 +3,9 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import logo from './assets/logo.png';
 
-const BACKEND_URL = "https://pdf2word-converter-reactjs-4.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_URL;
+console.log(BACKEND_URL);
+
 
 const App = () => {
   const [file, setFile] = useState(null);

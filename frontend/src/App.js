@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
-import "./App.css"; // Import CSS file
 import logo from './assets/logo.png';
-
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const App = () => {
   const [file, setFile] = useState(null);
@@ -26,7 +22,7 @@ const App = () => {
     formData.append("pdf", file);
 
     try {
-      const response = await axios.post(API_BASE_URL+"/upload", formData, {
+      const response = await axios.post("http://localhost:5000/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -41,7 +37,7 @@ const App = () => {
   const checkStatus = async (jobLocation) => {
     let polling = setInterval(async () => {
       try {
-        const response = await axios.get(API_BASE_URL+"/status", {
+        const response = await axios.get("http://localhost:5000/status", {
           params: { jobLocation },
         });
 
@@ -58,27 +54,26 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-    <div className="logo-container">
+    <div style={{ padding: "20px", textAlign: "center" }}>
+       <div className="logo-container">
         <img src={logo} alt="Triangle IP Logo" className="logo" />
       </div>
-
-      <h1>PDF to Word Converter</h1>
-
-      <div className="dropzone" {...getRootProps()}>
+      <h2>PDF to Word Converter</h2>
+      
+      <div {...getRootProps()} style={{ border: "2px dashed yellow", padding: "20px", cursor: "pointer" }}>
         <input {...getInputProps()} />
         {file ? <p>{file.name}</p> : <p>Drag & Drop a PDF or Click to Select</p>}
       </div>
 
-      <button className="upload-btn" onClick={handleUpload} disabled={!file}>
+      <button onClick={handleUpload} disabled={!file} style={{ marginTop: "10px" }}>
         Convert PDF to Word
       </button>
 
-      <p className="status">{status}</p>
+      <p>{status}</p>
 
       {downloadLink && (
         <a href={downloadLink} download="converted.docx">
-          <button className="download-btn">Download Word File</button>
+          <button>Download Word File</button>
         </a>
       )}
     </div>

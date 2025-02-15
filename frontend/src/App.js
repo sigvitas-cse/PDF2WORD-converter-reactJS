@@ -3,6 +3,8 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import logo from './assets/logo.png';
 
+const BACKEND_URL = "https://pdf2word-converter-reactjs-4.onrender.com";
+
 const App = () => {
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("");
@@ -22,10 +24,12 @@ const App = () => {
     formData.append("pdf", file);
 
     try {
-      const response = await axios.post("http://localhost:5000/upload", formData, {
+      // const response = await axios.post("http://localhost:5000/upload", formData, {
+      //   headers: { "Content-Type": "multipart/form-data" },
+      // });
+      const response = await axios.post(`${BACKEND_URL}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
       setStatus("Processing file...");
       checkStatus(response.data.jobLocation);
     } catch (error) {
@@ -37,7 +41,10 @@ const App = () => {
   const checkStatus = async (jobLocation) => {
     let polling = setInterval(async () => {
       try {
-        const response = await axios.get("http://localhost:5000/status", {
+        // const response = await axios.get("http://localhost:5000/status", {
+        //   params: { jobLocation },
+        // });
+        const response = await axios.get(`${BACKEND_URL}/status`, {
           params: { jobLocation },
         });
 

@@ -36,6 +36,8 @@ if (!fs.existsSync("./uploads")) {
 // 📌 Upload and Convert PDF to Word
 app.post("/upload", upload.single("pdf"), async (req, res) => {
   try {
+    console.log('Now inside Upload Section');
+    
     const filePath = req.file.path;
 
     // Step 1: Request an upload URL
@@ -79,6 +81,8 @@ app.post("/upload", upload.single("pdf"), async (req, res) => {
 // 📌 Check Conversion Status
 app.get("/status", async (req, res) => {
   try {
+    console.log('Now inside Status Section');
+
     const { jobLocation } = req.query;
 
     const headers = {

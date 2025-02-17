@@ -29,10 +29,6 @@ const App = () => {
       //   headers: { "Content-Type": "multipart/form-data" },
       // });
       const response = await axios.post(`${BACKEND_URL}/upload`, formData, {
-      // const response = await axios.post("http://localhost:5000/upload", formData, {
-      //   headers: { "Content-Type": "multipart/form-data" },
-      // });
-      const response = await axios.post(`${BACKEND_URL}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setStatus("Processing file...");
@@ -46,10 +42,6 @@ const App = () => {
   const checkStatus = async (jobLocation) => {
     let polling = setInterval(async () => {
       try {
-        // const response = await axios.get("http://localhost:5000/status", {
-        //   params: { jobLocation },
-        // });
-        const response = await axios.get(`${BACKEND_URL}/status`, {
         // const response = await axios.get("http://localhost:5000/status", {
         //   params: { jobLocation },
         // });

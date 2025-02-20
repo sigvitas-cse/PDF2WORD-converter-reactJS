@@ -13,7 +13,9 @@ const App = () => {
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "application/pdf",
-    onDrop: (acceptedFiles) => setFile(acceptedFiles[0]),
+    onDrop: (acceptedFiles) => {setFile(acceptedFiles[0]); 
+    setStatus("")
+    }
   });
 
   const handleUpload = async () => {
@@ -31,7 +33,7 @@ const App = () => {
       const response = await axios.post(`${BACKEND_URL}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      setStatus("Processing file...");
+      setStatus("Processing file.It takes 1-2 minutes please wait...");
       checkStatus(response.data.jobLocation);
     } catch (error) {
       console.error("Upload failed:", error);
@@ -85,9 +87,20 @@ const App = () => {
         {file ? <p>{file.name}</p> : <p>Drag & Drop a PDF or Click to Select</p>}
       </div>
 
-      <button onClick={handleUpload} disabled={!file} style={{ marginTop: "10px" }}>
+      {status === "Conversion complete! Click to download." || status === "Processing file.It takes 1-2 minutes please wait..." ? null : (<button onClick={handleUpload} disabled={!file} style={{
+        marginTop: "10px",
+        padding: "10px 20px",
+        fontSize: "16px",
+        fontWeight: "bold",
+        backgroundColor: file ? "#4CAF50" : "#ccc",
+        color: "white",
+        border: "none",
+        borderRadius: "5px",
+        cursor: file ? "pointer" : "not-allowed",
+        transition: "background-color 0.3s ease",
+      }}>
         Convert PDF to Word
-      </button>
+      </button>)}
 
       <p>{status}</p>
       {downloadLink && file && status === "Conversion complete! Click to download." ? (
@@ -95,9 +108,32 @@ const App = () => {
           href={downloadLink}
           download={file.name.replace(/\.pdf$/i, ".docx")}
         >
-          <button>Download Word File</button>
+          <button
+            style={{
+              padding: "12px 24px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              backgroundColor: "#007BFF",
+              color: "white",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease, transform 0.2s ease",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#007BFF")}
+            onMouseDown={(e) => (e.target.style.transform = "scale(0.95)")}
+            onMouseUp={(e) => (e.target.style.transform = "scale(1)")}
+          >
+            Download Word File
+          </button>
+
         </a>
       ) : null}
+      <footer style={{ textAlign: "center", padding: "5px", marginTop: "350px", background: "#f1f1f1", fontSize: "15px" }}>
+        <p>&copy; 2025 TriangleIP. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

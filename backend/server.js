@@ -60,7 +60,7 @@ if (!fs.existsSync("./uploads")) {
   fs.mkdirSync("./uploads");
 }
 
-// 📌 Upload and Convert PDF to Word
+//  Upload and Convert PDF to Word
 app.post("/upload", upload.single("pdf"), async (req, res) => {
   try {
     console.log("Now inside Upload Section");
@@ -104,7 +104,7 @@ app.post("/upload", upload.single("pdf"), async (req, res) => {
   }
 });
 
-// 📌 Check Conversion Status
+//  Check Conversion Status
 app.get("/status", async (req, res) => {
   try {
     console.log("Now inside Status Section");
@@ -130,7 +130,7 @@ app.get("/status", async (req, res) => {
   }
 });
 
-// 📌 Download Converted Word File
+//  Download Converted Word File
 app.get("/download", async (req, res) => {
   try {
     const { downloadUri, filename } = req.query;
